@@ -108,7 +108,7 @@ html{overscroll-behavior-y:auto}.modal,.modalback{overscroll-behavior:contain}bo
 <div id="modalRoot"></div><div id="toast" class="toast" role="status"></div><input type="file" id="importFile" accept=".json,.csv,application/json,text/csv" class="hidden"><input type="file" id="geoImportFile" accept=".zip,.geojson,.json,.kml,.kmz,.gpx,.csv,.wkt,application/zip,application/geo+json,application/json,text/xml,text/csv" class="hidden">
 <script>
 (()=>{'use strict';
-const API_URL=window.API_URL||''; // عند استضافة الصفحة خارج Apps Script: ضع هنا رابط تطبيق الويب (…/exec)
+const API_URL=window.API_URL||'https://script.google.com/macros/s/AKfycbxTf9FYIuqzUmrUdwBxZcddTcTBPFLVNb3RSa5Zb2aS6hLiqhPfZombO48nwXTDiTZB/exec'; // عند استضافة الصفحة خارج Apps Script: ضع هنا رابط تطبيق الويب (…/exec)
 const GAS=!!(window.google&&google.script&&google.script.run),ONLINE=GAS||!!API_URL;
 let token=null,rev=0,busy=0,chain=Promise.resolve();
 function callApi(action,p={}){const body=JSON.stringify({action,token,...p});if(GAS)return new Promise((ok,no)=>google.script.run.withSuccessHandler(r=>ok(JSON.parse(r))).withFailureHandler(no).api(body));return fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body}).then(r=>r.json())}
