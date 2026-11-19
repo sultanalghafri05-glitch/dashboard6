@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#16171b"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><script>window.API_URL='ضع_هنا_رابط_exec';</script><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="المتابعة">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#16171b"><link rel="manifest" href="manifest.json"><link rel="apple-touch-icon" href="icon-192.png"><script>window.API_URL='https://script.google.com/macros/s/AKfycbxTf9FYIuqzUmrUdwBxZcddTcTBPFLVNb3RSa5Zb2aS6hLiqhPfZombO48nwXTDiTZB/exec';</script><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="المتابعة">
 <script>(function(){window.__BUILD='v13.10-2026-11-19';function bar(t){var b=document.getElementById('errbox');if(!b){b=document.createElement('div');b.id='errbox';b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:99999;background:#c34d58;color:#fff;padding:10px 14px;font:13px Tahoma;direction:ltr;white-space:pre-wrap';(document.body||document.documentElement).appendChild(b)}b.textContent+=t+'\n'}window.addEventListener('error',function(e){bar('JS error: '+e.message+' (line '+e.lineno+') ['+window.__BUILD+']'+(e.error&&e.error.stack?'\n'+String(e.error.stack).split('\n').slice(0,4).join('\n'):''))});window.addEventListener('unhandledrejection',function(e){bar('Promise error: '+(e.reason&&e.reason.message||e.reason))});setTimeout(function(){if(!window.__ok){var sc=document.scripts,t=(sc[sc.length-1].text||'');bar('Main script did not start. scripts='+sc.length+' lastLen='+t.length+' end='+JSON.stringify(t.slice(-30)))}},3000)})()</script>
 <title>لوحة المتابعة والإنجاز</title>
 <style>
@@ -173,7 +173,7 @@ html{overscroll-behavior-y:auto}.modal,.modalback{overscroll-behavior:contain}bo
 <div id="modalRoot"></div><div id="toast" class="toast" role="status"></div><input type="file" id="importFile" accept=".json,.csv,application/json,text/csv" class="hidden"><input type="file" id="geoImportFile" accept=".zip,.geojson,.json,.kml,.kmz,.gpx,.csv,.wkt,application/zip,application/geo+json,application/json,text/xml,text/csv" class="hidden">
 <script>
 (()=>{'use strict';
-const API_URL=window.API_URL||'https://script.google.com/macros/s/AKfycbxTf9FYIuqzUmrUdwBxZcddTcTBPFLVNb3RSa5Zb2aS6hLiqhPfZombO48nwXTDiTZB/exec'; // عند استضافة الصفحة خارج Apps Script: ضع هنا رابط تطبيق الويب (…/exec)
+const API_URL=window.API_URL||''; // عند استضافة الصفحة خارج Apps Script: ضع هنا رابط تطبيق الويب (…/exec)
 const GAS=!!(window.google&&google.script&&google.script.run),ONLINE=GAS||!!API_URL;
 let token=null,rev=0,busy=0,chain=Promise.resolve();
 function callApi(action,p={}){const body=JSON.stringify({action,token,...p});if(GAS)return new Promise((ok,no)=>google.script.run.withSuccessHandler(r=>ok(JSON.parse(r))).withFailureHandler(no).api(body));return fetch(API_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body}).catch(()=>{throw Error('تعذر الاتصال بالخادم: تحقق من الإنترنت ومن رابط API_URL')}).then(r=>r.text()).then(t=>{try{return JSON.parse(t)}catch(_){throw Error('رد غير صالح من الخادم: تأكد من نشر النسخة الأحدث ومن أن الوصول Anyone')}})}
